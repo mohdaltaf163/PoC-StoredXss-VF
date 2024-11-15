@@ -1,0 +1,20 @@
+<apex:page controller="StoredXSSController" showHeader="true" sidebar="false">
+    <h1>Stored XSS Vulnerability Demo</h1>
+    
+    <!-- Input form to store user input -->
+    <apex:form>
+        <apex:outputLabel value="Enter text to store:" for="userInput"/>
+        <apex:inputText value="{!userInput}" id="userInput"/>
+        <apex:commandButton value="Store" action="{!saveInput}" reRender="storedData"/>
+    </apex:form>
+    
+    <!-- Display stored entries from the custom object -->
+    <h2>Stored Data:</h2>
+    <apex:outputPanel id="storedData">
+        <ul>
+            <apex:repeat value="{!storedEntries}" var="entry">
+                <li><apex:outputText value="{!entry.Name}" escape="false"/></li>
+            </apex:repeat>
+        </ul>
+    </apex:outputPanel>
+</apex:page>
